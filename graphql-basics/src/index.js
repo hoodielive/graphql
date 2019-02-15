@@ -9,6 +9,11 @@ const typeDefs = `
     age: Int!
     employed: Boolean!
     gpa: Float
+    title: String!
+    price: Float!
+    releaseYear: Int
+    rating: Float
+    inStock: Boolean!
   }
 `
 
@@ -28,7 +33,22 @@ const resolvers = {
       return true
     }, 
     gpa() {
+      return null 
+    },
+    title() {
+      return 'The Mystery of GraphQL'
+    },
+    price() {
+      return 15.99
+    }, 
+    releaseYear() {
       return null
+    }, 
+    rating() {
+      return null
+    }, 
+    inStock() {
+      return false
     }
   }
 }
