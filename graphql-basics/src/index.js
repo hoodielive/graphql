@@ -1,10 +1,39 @@
-import myCurrentLocation,  { getGreeting, message, name } from "./myModule";
-import addition, { subtract } from './math'
+import { GraphQLServer } from 'graphql-yoga'
 
-console.log(message);
-console.log(name)
-console.log(myCurrentLocation)
-console.log(getGreeting('Osa'))
+// Type definitions (schema)
+// Scalar types = String Boolean Int Float ID
+const typeDefs = `
+  type Query {
+    hello: String!
+    name: String!
+    location: String!
+    bio: String!
+  }
+`
 
-console.log(addition(4, 5))
-console.log(subtract(3, 9))
+// Resolvers
+const resolvers = {
+  Query: {
+    hello() {
+      return 'This is my query!'
+    },
+    name() {
+      return 'Larry'
+    },
+    location() {
+      return 'I live in a higher state of consciousness!'
+    },
+    bio() {
+      return 'I love women'
+    }
+  }
+}
+
+const server = new GraphQLServer({
+  typeDefs,
+  resolvers
+})
+
+server.start(() => {
+  console.log('The server is up...')
+})
