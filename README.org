@@ -1,7 +1,7 @@
 #+TITLE: GraphQL 
 
-* What is GraphQL?
-* Why GraphQL?
+*** What is GraphQL?
+*** Why GraphQL?
 1. GraphQL is fast!
 2. GraphQL is flexible!
 3. GraphQL is easy to use and simple to maintain!
