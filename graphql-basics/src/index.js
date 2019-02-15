@@ -1,54 +1,54 @@
 import { GraphQLServer } from 'graphql-yoga'
 
-// Type definitions (schema)
 // Scalar types = String Boolean Int Float ID
+
+// Type definitions (schema)
 const typeDefs = `
   type Query {
+    greeting(name: String): String!
+    me: User!
+    post: Post!
+  }
+  type User {
     id: ID!
     name: String!
-    age: Int!
-    employed: Boolean!
-    gpa: Float
+    email: String!
+    age: Int
+  }
+  type Post {
+    id: ID!
     title: String!
-    price: Float!
-    releaseYear: Int
-    rating: Float
-    inStock: Boolean!
+    body: String!
+    published: Boolean!
   }
 `
 
 // Resolvers
 const resolvers = {
   Query: {
-    id() {
-      return 'uuid-12345'
-    }, 
-    name() {
-      return 'Larry'
-    }, 
-    age() {
-      return 9
-    }, 
-    employed() {
-      return true
-    }, 
-    gpa() {
-      return null 
+    greeting(parent, args, ctx, info) {
+      if (args.name) {
+        return `Hallo, ${args.name}!`
+      } 
+      else {
+        return 'Hallo!'
+      }
     },
-    title() {
-      return 'The Mystery of GraphQL'
+    me() {
+      return {
+        id: '123098',
+        name: 'Hood King', 
+        email: 'hoodking@example.com', 
+        age: 28
+      }
     },
-    price() {
-      return 15.99
-    }, 
-    releaseYear() {
-      return null
-    }, 
-    rating() {
-      return null
-    }, 
-    inStock() {
-      return false
+    post() {
+      return {
+        id: '9039', 
+        title: 'Lwa Egun Awo',
+        body: 'This is a sample posting', 
+        published: true
+      }
     }
   }
 }
