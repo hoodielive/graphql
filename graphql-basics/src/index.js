@@ -227,36 +227,36 @@ const resolvers = {
   Post: {
     author(parents, args, ctx, info) {
       return users.find((user) => {
-        return user.id === parent.author
+        return user.id === parent.data.author
       })
     }, 
     comments(parent, args, ctx, info) {
       return comments.filter((comment) => {
-        return comment.post === parent.id
+        return comment.post === parent.data.id
       })
     }
   },
   User: {
     posts(parent, args, ctx, info) {
       return posts.filter((post) => {
-        return post.author === parent.id
+        return post.author === parent.data.id
       })
     },
     comments(parent, args, ctx, info) {
       return comments.filter((comment) => {
-        return comment.author === parent.id
+        return comment.author === parent.data.id
       })
     }
   },
   Comment: {
     author(parent, args, ctx, info) {
       return users.find((user) => {
-        return user.id === parent.author
+        return user.id === parent.data.author
       })
     }, 
     post(parent, args, ctx, info) {
       return posts.find((post) => {
-        return post.id === parent.post
+        return post.id === parent.data.post
       })
     }
   },
